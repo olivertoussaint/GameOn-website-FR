@@ -53,27 +53,29 @@
         </button>
       </div>
 
+      <!-- Modal -->
       <div class="bground">
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
-            <form
+
+            <!-- Form -->
+            <form id="form"
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
             >
+            <!-- First Name -->
               <div
-                class="formData" id="msg-first">
+                class="formData" msg-first="Veuillez saisir 2 caractères au minimum" msg-first-visible ="false">
                 <label>Prénom</label><br>
                 <input
                   class="text-control"
                   type="text"
                   id="first"
                   name="first"
-                  placeholder="Ton prénom"
+                  placeholder="Prénom"
                   minlength="2"
-                  required
                 /><br>
               </div>
               <div
@@ -84,8 +86,7 @@
                   type="text"
                   id="last"
                   name="last"
-                  placeholder="Ton nom"
-                  required
+                  placeholder="Nom de famille"
                 /><br>
               </div>
               <div
@@ -96,8 +97,7 @@
                   type="email"
                   id="email"
                   name="email"
-                  placeholder="untel.xxxx@mail.com"
-                  required
+                  placeholder="entrez votre : 📧  "
                 /><br>
               </div>
               <div
@@ -117,7 +117,8 @@
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
-                class="formData">
+                class="formData"
+                id="localities">
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -192,9 +193,8 @@
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
-                  checked
                 />
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
@@ -216,6 +216,17 @@
           </div>
         </div>
       </div>
+
+      <!-- Shipping Confirmation -->
+      <div class="container-confirmation-submit">
+        <div class="form-submitted">
+          <span class="close-modal-submit"></span>
+          <p>
+            Votre demande réservation a bien été prise en compte 👌 
+          </p>
+          <button id="close-btn-confirmation">Fermer</button>
+        </div>
+      </div>
     </main>
     <footer>
       <p class="copyrights">
@@ -223,8 +234,6 @@
       </p>
     </footer>
     <script src="./js/modal.js"></script>
-    <script src="./js/validationForm.js"></script>
-    <script src="./js/privateData.js"></script>
-    <script src="./js/error.js"></script>
+    <script src="./js/validationFields.js"></script>
   </body>
 </html>
