@@ -7,18 +7,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="./css/modal.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link
-      href="https://fonts.googleapis.com/css?family=DM+Sans"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans"rel="stylesheet" />
   </head>
   <body>
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
-      <img alt="logo" src="./img/Logo.png" width="auto" height="auto" />
+        <img alt="logo" src="./img/Logo.png" width="auto" height="auto" />
     </div>
     <div class="main-navbar">
-      
       <a href="#" class="active"><span>Accueil</span></a>
       <a href="#"><span>Détails de l'évènement</span></a>
       <a href="#"><span>À propos</span></a>
@@ -66,54 +62,33 @@
               method="get"
             >
             <!-- First Name -->
-              <div
-                class="formData" msg-first="Veuillez saisir 2 caractères au minimum" msg-first-visible ="false">
+              <div class="formData">
                 <label>Prénom</label><br>
-                <input
-                  class="text-control"
-                  type="text"
-                  id="first"
-                  name="first"
-                  placeholder="Prénom"
-                  minlength="2"
-                /><br>
+                <input class="text-control" type="text" id="first" name="first" placeholder="Prénom" minlength="2" onkeyup="checkFirstName()" /><br>
+                <span id="first-error"></span>
               </div>
               <div
                 class="formData">
                 <label>Nom</label><br>
-                <input
-                  class="text-control"
-                  type="text"
-                  id="last"
-                  name="last"
-                  placeholder="Nom de famille"
-                /><br>
+                <input class="text-control" type="text" id="last" name="last" placeholder="Nom de famille" onkeyup="checkName()" /><br>
+                <span id="name-error"></span>
               </div>
               <div
                 class="formData">
                 <label>E-mail</label><br>
-                <input
-                  class="text-control"
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="entrez votre : 📧  "
-                /><br>
+                <input class="text-control" type="email" id="email" name="email" placeholder="entrez votre : 📧  " onkeyup= "checkEmail()" /><br>
+                <span id="email-error"></span>
               </div>
               <div
                 class="formData">
                 <label>Date de naissance</label><br>
-                <input
-                  class="text-control"
-                  type="date"
-                  id="birthdate"
-                  name="birthdate"
-                /><br>
+                <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
               </div>
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" onkeyup="checkTournament()" />
+                <span id="tournament-error"></span>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
@@ -187,25 +162,20 @@
                 >
               </div>
 
-              <div
-                class="formData">
-                <input
-                  class="checkbox-input"
-                  type="checkbox"
-                  id="checkbox1"
-                />
+              <div class="formData"><input class="checkbox-input" type="checkbox" id="checkbox1" onkeyup= "checkBoxVerif()"/>
                 <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
+                  <span id="checkbox-error"></span>
                 </label>
                 <br>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
-                  Je Je souhaite être prévenu des prochains évènements.
+                  Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br>
-              </div>
+              </div>           
               <input
                 class="btn-submit"
                 type="submit"
@@ -213,6 +183,7 @@
                 value="C'est parti"
               />
             </form>
+            <p id="error"></p>
           </div>
         </div>
       </div>
@@ -221,8 +192,8 @@
       <div class="container-confirmation-submit">
         <div class="form-submitted">
           <span class="close-modal-submit"></span>
-          <p>
-            Votre demande réservation a bien été prise en compte 👌 
+          <p id="confirm-reservation">
+            <!-- Votre demande réservation a bien été prise en compte 👌  -->
           </p>
           <button id="close-btn-confirmation">Fermer</button>
         </div>

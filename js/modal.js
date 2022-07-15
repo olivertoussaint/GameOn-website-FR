@@ -6,7 +6,6 @@ const closeModalBtn = document.getElementsByClassName("close");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-closeModalBtn[0].addEventListener("click", closeModal);
 
 // launch modal form
 function launchModal() {
@@ -17,7 +16,7 @@ function launchModal() {
 function closeModal() {
   modalbg.style.display = "none";
 }
-
+closeModalBtn[0].addEventListener("click", closeModal);
 
 // Nav Responsive
 function editNav() {
