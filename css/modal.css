@@ -234,12 +234,18 @@ input.invalid {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-.formData span {
-  position: relative;
-  color: #ff0000;
-  font-size: 1rem;
-}
+.formData[data-error-visible="false"] .text-control {
+  border: 3px solid #48e562;
+} 
 
+.formData small {
+  color: #ff0000;
+  font-weight: 600;
+  font-size: .8rem;
+}
+#location-error {
+  text-align: center;
+}
 /* 
 input[data-error]::after {
     content: attr(data-error);
@@ -402,6 +408,9 @@ input[data-error]::after {
   left: 0;
   right: 0;
   z-index: 99;
+}
+.formData .fa {
+  font-size: .9rem;
 }
 
 /* Hide the items when the select box is closed: */

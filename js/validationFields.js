@@ -1,37 +1,27 @@
 // DOM Elements For The Form Validation Fields
-const form          = document.getElementById('form');
-// const firstName     = document.getElementById('first');
-// const lastName      = document.getElementById('last');
-// const email         = document.getElementById('email');
-const birthdate     = document.getElementById('birthdate');
-// const quantity      = document.getElementById('quantity');
-const localities    = document.getElementById('localities');
-const locations     = document.querySelectorAll('#localities .checkbox-input');
-// const checkbox1     = document.getElementById('checkbox1');
-const inputControl  = document.getElementsByClassName('text-control');
-const pattern       = /^[a-zA-Z\-]+$/;
+const form               = document.getElementById('form');
+const firstName          = document.getElementById('first').value;
+const lastName           = document.getElementById('last').value;
+const email              = document.getElementById('email').value;
+const quantityTournament = document.getElementById('quantity');
+const localities         = document.getElementById('localities');
+const locations          = document.querySelectorAll('#localities .checkbox-input');
+const checkbox1          = document.getElementById('checkbox1');
+const inputControl       = document.getElementsByClassName('text-control');
+const pattern            = /^[a-zA-Z\-]+$/;
 
 // CHECK FIRST NAME COMPLIANCE
 function checkFirstName() {
-    let firstError  = document.getElementById('first-error');
-    const firstName = document.getElementById('first').value;
+    let firstError = document.getElementById('first-error');
 
-    if(firstName.length < 2){
+    if(firstName.trim().length < 2 && !lastName.trim().match(pattern)){
         firstError.style.display = 'block';
-        firstError.innerHTML = 'Veuillez mettre au minimum 2 caractères !';
+        firstError.innerHTML     = 'Veuillez saisir au minimum 2 caractères !';
         setTimeout(function(){
             firstError.style.display ='none';
-        }, 3000)
+        }, 4500);
         return false;
-    }
-    if(!firstName.match(pattern)) {
-        firstError.style.display = 'block';
-        firstError.innerHTML = "⛔ uniquement des lettres";
-        setTimeout(function(){
-            firstError.style.display ='none';
-        }, 3000);
-        return false;
-    }
+    } 
     firstError.innerHTML = '';
     return true;
 }
@@ -39,15 +29,13 @@ function checkFirstName() {
 // CHECK LAST NAME COMPLIANCE
 function checkName() {
     let nameError = document.getElementById('name-error');
-    const lastName      = document.getElementById('last').value;
-    // const pattern       = /^[a-zA-Z\-]+$/;
 
-    if(!lastName.match(pattern)) {
+    if(firstName.trim().length < 2 && !lastName.trim().match(pattern)) {
         nameError.style.display = 'block';
-        nameError.innerHTML = "⛔ pas de caractères spéciaux / alphanumérique";
+        nameError.innerHTML     = "⛔ pas de caractères spéciaux / alphanumérique";
         setTimeout(function(){
             nameError.style.display ='none';
-        }, 3000);
+        }, 4400);
         return false;
     }
     nameError.innerHTML = '';
@@ -55,63 +43,117 @@ function checkName() {
 }
 // CHECK EMAIL VALIDATION
 function checkEmail() {
-    let emailError = document.getElementById('email-error');
-    const email         = document.getElementById('email').value;
+    let emailError    = document.getElementById('email-error');
     const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-    if(!email.match(emailRegExp)) {
+    if(!email.trim().match(emailRegExp)) {
         emailError.style.display = 'block';
-        emailError.innerHTML = "format du email invalide !"
+        emailError.innerHTML     = "format du email invalide !"
         setTimeout(function(){
             emailError.style.display ='none';
-        }, 3000);
+        }, 4300);
         return false;
     }
     emailError.innerHTML = '';
     return true;
 }
 
-// NUMBER OF TOURNAMENTS VERIFICATION
-function checkTournament() {
-    let tournamentError = document.getElementById('tournament-error');
-    const quantity      = document.getElementById('quantity').value;
-
-    if(quantity < 0 ||quantity > 99 || typeof(quantity !== number)) {
-        tournamentError.style.display = 'block';
-        tournamentError.innerHTML = "choisir entre 0 et 99 !"
+// CHECK BIRTH DATE VALIDATY
+function checkBirthDate() {
+    const birthDate     = document.getElementById('birthdate');
+    let birthdateError  = document.getElementById('birthdate-error');
+    const dateNow = new Date();
+    const date = dateNow.getFullYear() - new Date(birthDate.value).getFullYear();
+    if(date < 16) {
+        birthdateError.style.display = 'block';
+        birthdateError.innerHTML     = "il faut avoir 16ans révolu";
         setTimeout(function(){
-            tournamentError.style.display ='none';
-        }, 3000);
+            birthdateError.style.display ='none';
+        }, 4200)
         return false;
     }
-    tournamentError.innerHTML = '';
+    birthdateError.innerHTML = '';
+    return true;
+    
+}
+
+// NUMBER OF TOURNAMENTS VERIFICATION
+function checkTournamentNumber() {
+    let quantityTournamentError = document.getElementById('quantity-tournament-error'); 
+
+    if(quantityTournament.value < 0 || quantityTournament.value > 99) {
+        quantityTournamentError.style.display = 'block';
+        quantityTournamentError.innerHTML = "choisir entre 0 et 99 !"
+        setTimeout(function(){
+            quantityTournamentError.style.display ='none';
+        }, 4100);
+        return false;
+    }
+    quantityTournamentError.innerHTML = '';
     return true;
 }
+
+// CHECK LOCALISATION ACTIVED 
+function activeLocation(){
+    let locationError = document.getElementById('location-error');
+    const locationActived = document.querySelectorAll('input[name="location"]:checked');
+    if (locationActived.length === 0) {
+        locationError.style.display = 'block';
+        locationError.innerHTML = "choisisssez une localisation."
+        setTimeout(function(){
+            locationError.style.display ='none';
+        }, 4000);
+        return false;
+    }
+    locationError.innerHTML = '';
+    return true
+}  
 
 // TERM OF USE
 function checkBoxVerif() {
     let checkboxError = document.getElementById('checkbox-error');
-    const checkbox1     = document.getElementById('checkbox1');
+
     if(checkbox1.checked === false) {
         checkboxError.style.display = 'block';
-        checkboxError.innerHTML = "Veuillez cocher les conditions d'utilisation"
-        setTimeout(function(){
-            checkboxError.style.display ='none';
-        }, 3000);
+        checkboxError.innerHTML = "Veuillez cocher j'ai lu et accepté les conditions d'utilisation"
         return false;
     }
     checkboxError.innerHTML = '';
     return true;
 }
 
+function forAllFieldsValidation() {
+    checkFirstName()
+    checkName()
+    checkEmail()
+    checkBirthDate()
+    checkTournamentNumber()
+    activeLocation()
+    checkBoxVerif()
+}
+
+function formValidation() {
+    if (checkFirstName() === true &&
+        checkName() === true &&
+        checkEmail() === true &&
+        checkBirthDate() === true &&
+        checkTournamentNumber() === true &&
+        activeLocation() === true &&
+        checkBoxVerif() === true) {
+        return true;
+    }
+    return false;
+}
+
 // SEND FORM
-form.addEventListener("submit", function(e) {
+form.addEventListener("submit", (e) => {
     e.preventDefault();
-    checkFirstName();
-    checkName();
-    checkEmail();
-    checkTournament();
-    checkBoxVerif();
-},false);
+    if (formValidation() == true) {
+        displayModalSubmit();
+        document.querySelector('form').reset();
+    } else {
+        forAllFieldsValidation();
+    }
+});
 
 
