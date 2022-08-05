@@ -64,25 +64,25 @@
             <!-- First Name -->
               <div class="formData">
                 <label>Prénom</label><br>
-                <input class="text-control" type="text" id="first" name="first" placeholder="Prénom" minlength="2" onkeyup="checkFirstName()" /><br>
+                <input class="text-control" type="text" id="first" name="first" placeholder="Prénom" minlength="2" onkeydown="backgroundChangeColor()" onkeyup="checkFirstName()" /><br>
                 <small id="first-error"></small>
               </div>
               <div
                 class="formData">
                 <label>Nom</label><br>
-                <input class="text-control" type="text" id="last" name="last" placeholder="Nom de famille" onkeyup="checkLastName()" /><br>
-                <small id="name-error"></small>
+                <input class="text-control" type="text" id="last" name="last" placeholder="Nom de famille" onkeyup= "checkLastName()" /><br>
+                <small id="last-error"></small>
               </div>
               <div
                 class="formData">
                 <label>E-mail</label><br>
-                <input class="text-control" type="email" id="email" name="email" placeholder="untel@email.com  " onkeyup= "checkEmail()" /><br>
+                <input class="text-control" type="email" id="email" name="email" placeholder="untel@email.com" onkeyup="checkEmail()" /><br>
                 <small id="email-error"></small>
               </div>
               <div
                 class="formData">
                 <label>Date de naissance</label><br>
-                <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
+                <input class="text-control" type="date" id="birthdate" name="birthdate" onkeyup="checkBirthDate()" /><br>
                 <small id="birthdate-error"></small> 
               </div>
               <div
@@ -94,7 +94,7 @@
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
               class="formData"
-              id="localities" onkeyup="activeLocation()">
+              id="localities">
               <small id="location-error"></small>
                 <input
                   class="checkbox-input"
@@ -186,17 +186,16 @@
                 value="C'est parti"
               />
             </form>
-            <!-- <p id="error"></p> -->
+            <!-- <p id="erreur"></p> -->
           </div>
         </div>
       </div>
-
       <!-- Shipping Confirmation -->
       <div class="container-confirmation-submit">
         <div class="form-submitted">
           <span class="close-modal-submit"></span>
           <p id="confirm-reservation">
-            <!-- Votre demande réservation a bien été prise en compte 👌  -->
+            Votre demande réservation a bien été prise en compte 👌 
           </p>
           <button id="close-btn-confirmation">Fermer</button>
         </div>
