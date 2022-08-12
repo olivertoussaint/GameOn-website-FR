@@ -1,19 +1,19 @@
-// DOM MODAL Elements
+// DOM MODAL ELEMENTS
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const closeModalBtn = document.getElementsByClassName("close");
+const closeModalBtn = document.querySelectorAll(".close");
 
-// launch modal form
+// LAUNCH MODAL FORM
 let launchModal = () => modalbg.style.display = "block";
 
-// launch modal event
+// LAUNCH MODAL EVENT
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 
 
-// close modal form
+// CLOSE MODAL FORM
 let closeModal = () => modalbg.style.display = "none";
 
-// close modal event
+// CLOSE MODAL EVENT
 closeModalBtn[0].addEventListener("click", closeModal);

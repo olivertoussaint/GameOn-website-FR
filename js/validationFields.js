@@ -1,3 +1,4 @@
+// BACKGROUND INPUT WHEN ENTERING VALUES AND RETURN FALSE
 function backgroundChangeColor() {
     const nodeList = document.querySelectorAll(".text-control");
     for (let i = 0; i < nodeList.length; i++) {
@@ -13,6 +14,7 @@ const birthDate          = document.getElementById('birthdate');
 const tournamentQuantity = document.getElementById('quantity');
 const localities         = document.getElementById('localities');
 const checkbox1          = document.getElementById('checkbox1');
+const checkbox2          = document.getElementById('checkbox2');
 
 // PATTERN
 const pattern = /^[a-zA-ZÀ-ÖØ-öø-ÿ]+$/;
@@ -31,7 +33,7 @@ function checkFirstName() {
     } else {
         let validMinimLetter = firstValue.length;
         if (validMinimLetter < 2) {
-            firstError.innerHTML = "Il faut saisir au minimum 2 caractères";
+            firstError.innerHTML = "Il faut saisir au minimum 2 lettres";
             firstName.parentElement.setAttribute('data-error-visible', 'true');
         return false;
         } else {
@@ -59,7 +61,7 @@ function checkFirstName() {
     } else {
         let validMinimLetter = lastValue.length;
         if (validMinimLetter < 2) {
-            lastError.innerHTML = "Il faut saisir au minimum 2 caractères";
+            lastError.innerHTML = "Il faut saisir au minimum 2 lettres";
             lastName.parentElement.setAttribute('data-error-visible', 'true');
         return false;
         } else {
@@ -97,11 +99,8 @@ function checkEmail() {
 function checkBirthDate() {    
   let birthDateError   = document.getElementById('birthdate-error');
   let getUserDate = new Date(birthDate.value).getFullYear();
-  console.log(getUserDate);
   let nowDate = new Date().getFullYear();
-  console.log(nowDate);
   let diff = (nowDate - getUserDate);
-  console.log(diff);
   
   if (diff >= 16) {
       birthDateError.innerHTML = '';
@@ -139,19 +138,23 @@ function checkNumberOfTournament() {
             return false;   
     }
 }
-    
+
+ // CHANGE EVENT WHEN A CHANGE IN THEIR VALUE IS MADE BY THE USER
+ form.addEventListener('change', () => {
+    isActiveLocation(this);
+    });  
 
 // CHECK LOCALISATION ACTIVED 
-function activeLocation(){
+function isActiveLocation(){
     let locationError = document.getElementById('location-error');
     const locationActived = document.querySelectorAll('input[name="location"]:checked');
     if (locationActived.length === 0) {
-        console.log(locationActived);
-        locationError.innerHTML = "choisisssez une localisation."
+        locationError.innerHTML = "choisisssez une localisation"
         localities.parentElement.setAttribute('data-error-visible', 'true');
         localities.style.border = '1px solid #e54858';
         localities.style.borderRadius = "10px";
         localities.style.padding = "9px";
+        localities.style.marginBottom ="9px";
         return false;
     }
     locationError.innerHTML = '';
@@ -159,6 +162,11 @@ function activeLocation(){
     localities.style.border = 'none';
     return true
 }  
+
+// CHANGE EVENT WHEN A CHANGE IN THEIR VALUE IS MADE BY THE USER
+form.addEventListener('change', () => {
+    checkBoxVerif(this);
+    });
 
 // TERM OF USE
 function checkBoxVerif() {
@@ -171,27 +179,58 @@ function checkBoxVerif() {
     return false;
 }
 
+// CHANGE EVENT WHEN A CHANGE IN THEIR VALUE IS MADE BY THE USER
+form.addEventListener('change', () => {
+    futureEvents(this);
+    });
+
+// FUTURE EVENTS
+function futureEvents() {
+    let confirmFutureEvents = document.getElementById('confirm-future-events');
+
+   if(checkbox2.checked) {
+    confirmFutureEvents.innerHTML = 'Vous sevez prévenu lors de nos prochains évènements';
+    confirmFutureEvents.style.color ='#48e562';
+    confirmFutureEvents.style.visibility = "visible";
+    setTimeout(() => {confirmFutureEvents.style.visibility = 'hidden';}, 3000);
+    return true; 
+   }
+}
+
+// LAUNCH ALL FUNCTIONS
+function launchAllFunctions() {
+    checkFirstName()
+    checkLastName()
+    checkEmail()
+    checkBirthDate()
+    checkNumberOfTournament()
+    isActiveLocation()
+    checkBoxVerif()
+    futureEvents()
+}
+
+// CHECK ANY TROUBLE MUST RETURN TRUE
 function isValidatedForm() {
     if(checkFirstName()
     && checkLastName()
     && checkEmail()
     &&checkBirthDate()
     && checkNumberOfTournament()
-    && activeLocation()
-    && checkBoxVerif()) {
+    && isActiveLocation()
+    && checkBoxVerif()
+    && futureEvents()
+    ) {
         return true;
-    } else {
-        return false;
-    }
+}
 }
 
-
+  // SUBMIT EVENT
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (isValidatedForm()) {
         displayModalSubmit();
-          document.getElementById('form').reset()
     }
+    launchAllFunctions();
 })
 
 

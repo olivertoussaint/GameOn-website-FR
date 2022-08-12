@@ -59,7 +59,7 @@
             <form id="form"
               name="reserve"
               action="index.html"
-              method="get"
+              method="post"
             >
             <!-- First Name -->
               <div class="formData">
@@ -95,7 +95,7 @@
               <div
               class="formData"
               id="localities">
-              <small id="location-error"></small>
+              
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -161,14 +161,14 @@
                 <label class="checkbox-label" for="location6">
                   <span class="checkbox-icon"></span>
                   Portland
-                </label>
-                
+                </label> <br>
+                <small id="location-error"></small>
               </div>
 
               <div class="formData"><input class="checkbox-input" type="checkbox" id="checkbox1" onkeyup= "checkBoxVerif()"/>
                 <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
-                  J'ai lu et accepté les conditions d'utilisation.
+                  J'ai lu et accepté les conditions d'utilisation. <br>
                   <small id="checkbox-error"></small>
                 </label>
                 <br>
@@ -176,6 +176,7 @@
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
                   Je souhaite être prévenu des prochains évènements.
+                  <p id="confirm-future-events"></p>
                 </label>
                 <br>
               </div>           
@@ -186,7 +187,6 @@
                 value="C'est parti"
               />
             </form>
-            <!-- <p id="erreur"></p> -->
           </div>
         </div>
       </div>
@@ -194,9 +194,11 @@
       <div class="container-confirmation-submit">
         <div class="form-submitted">
           <span class="close-modal-submit"></span>
-          <p id="confirm-reservation">
-            Votre demande réservation a bien été prise en compte 👌 
-          </p>
+          <div id="reservation-confirmation">
+            <p><span class="text-center">Merci pour</span>
+            <br>
+            votre inscription</p>
+          </div>
           <button id="close-btn-confirmation">Fermer</button>
         </div>
       </div>
