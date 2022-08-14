@@ -27,6 +27,8 @@ p {
 }
 
 img {
+  width: auto; 
+  height: auto;
   padding-right: 1rem;
 }
 
@@ -67,39 +69,6 @@ img {
 .topnav .icon {
   display: none;
 }
-
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
 
 main {
   font-size: 130%;
@@ -183,6 +152,17 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+}
+
+/* ANIMATION */
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 label {
@@ -520,11 +500,11 @@ footer {
   display: none;
   position: fixed;
   z-index: 1;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
 }
 
@@ -540,6 +520,10 @@ footer {
 span.text-center {
   position: relative;
   left: 13%;
+}
+
+#confirm-future-events {
+  display: block;
 }
 
 .close-modal-submit {
@@ -597,9 +581,10 @@ span.text-center {
   position: relative;
   color: #fff;
   padding-top: 10px;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
+/* MEDIA QUERIES */
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
@@ -617,7 +602,7 @@ span.text-center {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 2.5rem;
     white-space: normal;
   }
   .hero-text {
@@ -639,12 +624,63 @@ span.text-center {
   }
 }
 
-@keyframes modalopen {
-  from {
-    opacity: 0;
-    transform: translateY(-150px);
+@media screen and (max-width: 768px) {
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
   }
-  to {
-    opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
   }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin-top: 0;
+  }
+  .hero-section {
+    min-height: 75vh;
+  }
+  .hero-content {
+    min-width: 395px;
+  }
+} 
+
+@media screen and (max-width: 360px) {
+  .header-logo img{
+    width: 200px;
+    padding: 10px;
+  }
+  main {
+    margin: 0 10px;
+  }
+  
+  .hero-content {
+    min-width: 300px;
+  }
+  .hero-headline {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .hero-text {
+    font-size: 1.4rem;
+}
+.copyrights {
+  font-size: .9rem;
+}
 }
